@@ -63,7 +63,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav" style="height: 100%;">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="message.php"><i class="fa fa-fw fa-envelope"></i> Messages</a>

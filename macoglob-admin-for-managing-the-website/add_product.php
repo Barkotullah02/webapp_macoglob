@@ -59,6 +59,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="price" class="form-label">Quantity (Hiw many products in a lot)</label>
+                        <input type="number" class="form-control" id="price" name="quantity" step="0.01" required>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="image" class="form-label">Product Image</label>
                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
                         <img style="width: 25%; margin: 5px;" id="imagePreview" src="#" alt="Image Preview">
@@ -68,23 +73,50 @@
                 </form>
             </div>
 
+            <!-- Include jQuery CDN (if not already included) -->
+            <script src="js/jquery.js"></script>
+
             <script>
-                // Image preview logic
-                document.getElementById("image").addEventListener("change", function() {
-                    const file = this.files[0];
-                    if (file) {
-                        const reader = new FileReader();
+                $(document).ready(function () {
+                    $('#productForm').on('submit', function (e) {
+                        e.preventDefault(); // Prevent default form submission
 
-                        reader.onload = function(e) {
-                            const preview = document.getElementById("imagePreview");
-                            preview.src = e.target.result;
-                            preview.style.display = "block";
-                        };
+                        // Create a FormData object to handle file and form fields
+                        var formData = new FormData(this);
 
-                        reader.readAsDataURL(file);
-                    }
+                        $.ajax({
+                            url: 'add_product_todb.php', // Your PHP handler
+                            type: 'POST',
+                            data: formData,
+                            contentType: false, // Important for file upload
+                            processData: false, // Important for file upload
+                            success: function (response) {
+                                alert(response);
+                                console.log(response);
+                                $('#productForm')[0].reset(); // Clear form
+                                $('#imagePreview').hide();   // Hide image preview
+                            },
+                            error: function (xhr, status, error) {
+                                alert('Error: ' + error);
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    });
+
+                    // Optional: Image preview logic
+                    $('#image').on('change', function () {
+                        const file = this.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                $('#imagePreview').attr('src', e.target.result).show();
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    });
                 });
             </script>
+
         </div>
         <!-- /.row -->
 
