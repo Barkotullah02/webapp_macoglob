@@ -20,6 +20,8 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 
 </head>
@@ -73,6 +75,9 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-table"></i> Forms</a>
+                </li>
+                <li>
+                    <a href="products.php"><i class="fa-solid fa-bag-shopping"></i> My Products</a>
                 </li>
                 <li>
                     <a href="add_product.php"><i class="fa fa-edit"></i> Add a product</a>
